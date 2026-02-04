@@ -157,3 +157,9 @@ Content-Type: application/json
 - Error 예시
 1. 404 Not Found: 해당 id의 일정이 없음
 2. 403 Forbidden: 비밀번호 불일치
+
+
+
+# ERD
+
+<img width="354" height="187" alt="스크린샷 2026-02-04 오후 3 08 39" src="https://github.com/user-attachments/assets/37574a6b-2174-437b-980d-b7698e31e55a" />
