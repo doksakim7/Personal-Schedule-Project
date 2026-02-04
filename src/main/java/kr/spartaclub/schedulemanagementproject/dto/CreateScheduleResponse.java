@@ -1,0 +1,35 @@
+package kr.spartaclub.schedulemanagementproject.dto;
+
+
+import lombok.Getter;
+
+import java.time.LocalDateTime;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: jeongjihun
+ * Date: 26. 2. 4.
+ * Time: 오후 5:29
+ **/
+
+@Getter
+public class CreateScheduleResponse {
+
+    private final Long id;
+    private final String title;
+    private final String content;
+    private final String name;
+    private final String password;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime modifiedAt;
+
+    public CreateScheduleResponse(Long id, String title, String content, String name, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.name = name;
+        this.password = password;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+    }
+}
