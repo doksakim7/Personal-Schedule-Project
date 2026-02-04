@@ -80,6 +80,7 @@ public class ScheduleService {
         );
     }
 
+    // 일정 수정
     @Transactional
     public UpdateScheduleResponse update(Long id, UpdateScheduleRequest request) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
@@ -98,5 +99,15 @@ public class ScheduleService {
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
+    }
+
+    // 일정 삭제
+    @Transactional
+    public void delete(Long id) {
+        boolean existence = scheduleRepository.existsById(id);
+        if (!existence) {
+            throw new IllegalStateException("존재하지 않는 유저입니다");
+        }
+        scheduleRepository.deleteById(id);
     }
 }

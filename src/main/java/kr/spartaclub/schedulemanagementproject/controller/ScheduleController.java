@@ -58,4 +58,14 @@ public class ScheduleController {
         UpdateScheduleResponse result = scheduleService.update(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+
+    // 일정 삭제 컨트롤러
+    @DeleteMapping("/api/schedules/{id}")
+    public ResponseEntity<Void> deleteSchedule(
+            @PathVariable Long id
+    ) {
+        scheduleService.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }
