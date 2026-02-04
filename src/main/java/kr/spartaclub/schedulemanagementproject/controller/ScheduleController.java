@@ -3,13 +3,17 @@ package kr.spartaclub.schedulemanagementproject.controller;
 
 import kr.spartaclub.schedulemanagementproject.dto.CreateScheduleRequest;
 import kr.spartaclub.schedulemanagementproject.dto.CreateScheduleResponse;
+import kr.spartaclub.schedulemanagementproject.dto.GetScheduleResponse;
 import kr.spartaclub.schedulemanagementproject.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,6 +36,13 @@ public class ScheduleController {
         ) {
         CreateScheduleResponse result = scheduleService.createSchedule(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
+
+    // 일정 전체 조회 컨트롤러
+    @GetMapping("/api/schedules")
+    public ResponseEntity<List<GetScheduleResponse>> getAll() {
+        List<GetScheduleResponse> result = scheduleService.getAll();
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
 }
