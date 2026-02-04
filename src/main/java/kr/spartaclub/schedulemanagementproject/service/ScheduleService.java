@@ -31,15 +31,14 @@ public class ScheduleService {
                 request.getName(),
                 request.getPassword()
         );
-        Schedule savedschedule = scheduleRepository.save(schedule);
+        Schedule savedSchedule = scheduleRepository.save(schedule);
         return new CreateScheduleResponse(
-                savedschedule.getId(),
-                savedschedule.getTitle(),
-                savedschedule.getContent(),
-                savedschedule.getName(),
-                savedschedule.getPassword(),
-                savedschedule.getCreatedAt(),
-                savedschedule.getModifiedAt()
+                savedSchedule.getId(),
+                savedSchedule.getTitle(),
+                savedSchedule.getContent(),
+                savedSchedule.getName(),
+                savedSchedule.getCreatedAt(),
+                savedSchedule.getModifiedAt()
         );
     }
 }

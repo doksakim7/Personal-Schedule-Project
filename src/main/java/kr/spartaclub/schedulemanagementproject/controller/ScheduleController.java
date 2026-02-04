@@ -26,14 +26,12 @@ public class ScheduleController {
 
 
     // 일정 생성 컨트롤러
-    @PostMapping
+    @PostMapping("/api/schedules")
     public ResponseEntity<CreateScheduleResponse> createSchedule(
             @RequestBody CreateScheduleRequest request
         ) {
         CreateScheduleResponse result = scheduleService.createSchedule(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
-
-
 
 }

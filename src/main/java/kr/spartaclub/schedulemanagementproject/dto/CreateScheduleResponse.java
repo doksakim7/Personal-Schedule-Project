@@ -19,16 +19,14 @@ public class CreateScheduleResponse {
     private final String title;
     private final String content;
     private final String name;
-    private final String password;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public CreateScheduleResponse(Long id, String title, String content, String name, String password, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CreateScheduleResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.name = name;
-        this.password = password;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
