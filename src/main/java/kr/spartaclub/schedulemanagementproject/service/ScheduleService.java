@@ -1,9 +1,7 @@
 package kr.spartaclub.schedulemanagementproject.service;
 
 
-import kr.spartaclub.schedulemanagementproject.dto.CreateScheduleRequest;
-import kr.spartaclub.schedulemanagementproject.dto.CreateScheduleResponse;
-import kr.spartaclub.schedulemanagementproject.dto.GetScheduleResponse;
+import kr.spartaclub.schedulemanagementproject.dto.*;
 import kr.spartaclub.schedulemanagementproject.entity.Schedule;
 import kr.spartaclub.schedulemanagementproject.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
@@ -73,6 +71,26 @@ public class ScheduleService {
                 () -> new IllegalStateException("존재하지 않는 유저입니다.")
         );
         return new GetScheduleResponse(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getName(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
+    }
+
+    @Transactional
+    public UpdateScheduleResponse update(Long id, UpdateScheduleRequest request) {
+        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 유저입니다.")
+        );
+        schedule.update(
+                request.getTitle(),
+                request.getName(),
+                request.getPassword()
+        );
+        return new UpdateScheduleResponse(
                 schedule.getId(),
                 schedule.getTitle(),
                 schedule.getContent(),
