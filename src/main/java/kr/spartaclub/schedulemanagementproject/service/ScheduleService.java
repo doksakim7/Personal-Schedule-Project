@@ -65,4 +65,20 @@ public class ScheduleService {
         }
         return dtos;
     }
+
+    // 일정 단건 조회(id)
+    @Transactional(readOnly = true)
+    public GetScheduleResponse getOne(Long id) {
+        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 유저입니다.")
+        );
+        return new GetScheduleResponse(
+                schedule.getId(),
+                schedule.getTitle(),
+                schedule.getContent(),
+                schedule.getName(),
+                schedule.getCreatedAt(),
+                schedule.getModifiedAt()
+        );
+    }
 }
