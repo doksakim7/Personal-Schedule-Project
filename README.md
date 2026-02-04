@@ -10,6 +10,7 @@ POST /api/schedules
 설명: 일정 등록
 
 - Request Body
+  
 | 필드 | 타입 | 필수 | 제약 |
 | --- | --- | --- | --- |
 | title | string | Y | <= 30 |
@@ -50,6 +51,7 @@ GET /api/schedules/{id}
 설명: 일정 1개 조회
 
 - Path Parameter
+  
 | 이름 | 타입 | 필수 |
 | --- | --- | --- |
 | id | number | Y |
@@ -99,11 +101,13 @@ PUT /api/schedules/{id}
 ※ 수정 시 본인 확인을 위해 password를 반드시 포함해야 함
 
 - Path Parameter
+  
 | 이름 | 타입 | 필수 |
 | --- | --- | --- |
 | id | number | Y |
 
 - Request Body
+  
 | 필드 | 타입 | 필수 | 제약 |
 | --- | --- | --- | --- |
 | title | string | Y | <= 30 |
