@@ -44,27 +44,48 @@ public class ScheduleService {
         );
     }
 
-    // 일정 전체 조회(GET)
+    // 일정 전체 조회(name, GET)
     @Transactional(readOnly = true)
-    public List<GetScheduleResponse> getAll() {
-        List<Schedule> schedules = scheduleRepository.findAll();
+    public List<GetScheduleResponse> getAllSchedules(String name) {
         List<GetScheduleResponse> dtos = new ArrayList<>();
 
-        for (Schedule schedule : schedules) {
-            GetScheduleResponse dto = new GetScheduleResponse(
-                    schedule.getId(),
-                    schedule.getTitle(),
-                    schedule.getContent(),
-                    schedule.getName(),
-                    schedule.getCreatedAt(),
-                    schedule.getModifiedAt()
-            );
-            dtos.add(dto);
+        if (name == null) {
+            List<Schedule> schedules = scheduleRepository.findAllOrderByModifiedAtDesc();
+
+            // 전체 조회
+            for (Schedule schedule : schedules) {
+                GetScheduleResponse dto = new GetScheduleResponse(
+                        schedule.getId(),
+                        schedule.getTitle(),
+                        schedule.getContent(),
+                        schedule.getName(),
+                        schedule.getCreatedAt(),
+                        schedule.getModifiedAt()
+                );
+                dtos.add(dto);
+            }
+            return dtos;
+        } else {
+            List<Schedule> schedules = scheduleRepository.findByNameOrderByModifiedAtDesc(name);
+            // name 기준 조회
+            for (Schedule schedule : schedules) {
+
+                GetScheduleResponse dtoName = new GetScheduleResponse(
+                        schedule.getId(),
+                        schedule.getTitle(),
+                        schedule.getContent(),
+                        schedule.getName(),
+                        schedule.getCreatedAt(),
+                        schedule.getModifiedAt()
+                );
+                dtos.add(dtoName);
+
+            }
+            return dtos;
         }
-        return dtos;
     }
 
-    // 일정 단건 조회(id)
+    // 일정 단건 조회(id, GET)
     @Transactional(readOnly = true)
     public GetScheduleResponse getOne(Long id) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
@@ -80,7 +101,7 @@ public class ScheduleService {
         );
     }
 
-    // 일정 수정
+    // 일정 수정(PATCH)
     @Transactional
     public UpdateScheduleResponse update(Long id, UpdateScheduleRequest request) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
@@ -101,7 +122,7 @@ public class ScheduleService {
         );
     }
 
-    // 일정 삭제
+    // 일정 삭제(DELETE)
     @Transactional
     public void delete(Long id) {
         boolean existence = scheduleRepository.existsById(id);
