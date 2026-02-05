@@ -43,30 +43,30 @@ public class ScheduleController {
     }
 
     // 일정 단건 조회(id) 컨트롤러
-    @GetMapping("/api/schedules/{id}")
+    @GetMapping("/api/schedules/{scheduleId}")
     public ResponseEntity<GetScheduleResponse> getSchedule(
-            @PathVariable Long id
+            @PathVariable Long scheduleId
     ) {
-        GetScheduleResponse result = scheduleService.getOne(id);
+        GetScheduleResponse result = scheduleService.getOneSchedule(scheduleId);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     // 일정 수정 컨트롤러
-    @PatchMapping("/api/schedules/{id}")
+    @PatchMapping("/api/schedules/{scheduleId}")
     public ResponseEntity<UpdateScheduleResponse> updateSchedule(
-            @PathVariable Long id,
+            @PathVariable Long scheduleId,
             @RequestBody UpdateScheduleRequest request
     ) {
-        UpdateScheduleResponse result = scheduleService.update(id, request);
+        UpdateScheduleResponse result = scheduleService.updateSchedule(scheduleId, request);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     // 일정 삭제 컨트롤러
-    @DeleteMapping("/api/schedules/{id}")
+    @DeleteMapping("/api/schedules/{scheduleId}")
     public ResponseEntity<Void> deleteSchedule(
-            @PathVariable Long id
+            @PathVariable Long scheduleId
     ) {
-        scheduleService.delete(id);
+        scheduleService.deleteSchedule(scheduleId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

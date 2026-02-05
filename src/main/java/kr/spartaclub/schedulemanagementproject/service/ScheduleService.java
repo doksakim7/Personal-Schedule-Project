@@ -87,9 +87,9 @@ public class ScheduleService {
 
     // 일정 단건 조회(id, GET)
     @Transactional(readOnly = true)
-    public GetScheduleResponse getOne(Long id) {
+    public GetScheduleResponse getOneSchedule(Long id) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 유저입니다.")
+                () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
         return new GetScheduleResponse(
                 schedule.getId(),
@@ -103,9 +103,9 @@ public class ScheduleService {
 
     // 일정 수정(PATCH)
     @Transactional
-    public UpdateScheduleResponse update(Long id, UpdateScheduleRequest request) {
+    public UpdateScheduleResponse updateSchedule(Long id, UpdateScheduleRequest request) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 유저입니다.")
+                () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
         schedule.update(
                 request.getTitle(),
@@ -124,10 +124,10 @@ public class ScheduleService {
 
     // 일정 삭제(DELETE)
     @Transactional
-    public void delete(Long id) {
+    public void deleteSchedule(Long id) {
         boolean existence = scheduleRepository.existsById(id);
         if (!existence) {
-            throw new IllegalStateException("존재하지 않는 유저입니다");
+            throw new IllegalStateException("존재하지 않는 일정입니다");
         }
         scheduleRepository.deleteById(id);
     }
