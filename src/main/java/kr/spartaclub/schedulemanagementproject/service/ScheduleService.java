@@ -50,7 +50,7 @@ public class ScheduleService {
         List<GetScheduleResponse> dtos = new ArrayList<>();
 
         if (name == null) {
-            List<Schedule> schedules = scheduleRepository.findAllOrderByModifiedAtDesc();
+            List<Schedule> schedules = scheduleRepository.findAllByOrderByModifiedAtDesc();
 
             // 전체 조회
             for (Schedule schedule : schedules) {
