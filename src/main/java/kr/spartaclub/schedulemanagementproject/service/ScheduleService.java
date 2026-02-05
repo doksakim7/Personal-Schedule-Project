@@ -107,11 +107,16 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
-        schedule.update(
-                request.getTitle(),
-                request.getName(),
-                request.getPassword()
-        );
+
+        // 비밀번호 검증
+        if (schedule.getPassword().equals(request.getPassword())) {
+            schedule.update(
+                    request.getTitle(),
+                    request.getName()
+            );
+        } else {
+            throw new IllegalStateException("비밀번호가 틀렸습니다.");
+        }
         return new UpdateScheduleResponse(
                 schedule.getId(),
                 schedule.getTitle(),
