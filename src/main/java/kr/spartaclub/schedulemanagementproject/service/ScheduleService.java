@@ -129,11 +129,15 @@ public class ScheduleService {
 
     // 일정 삭제(DELETE)
     @Transactional
-    public void deleteSchedule(Long id) {
+    public void deleteSchedule(Long id, String password) {
         boolean existence = scheduleRepository.existsById(id);
         if (!existence) {
             throw new IllegalStateException("존재하지 않는 일정입니다");
         }
-        scheduleRepository.deleteById(id);
+        if(password.equals(scheduleRepository.getReferenceById(id).getPassword())) {
+            scheduleRepository.deleteById(id);
+        } else {
+            throw new IllegalStateException("비밀번호가 틀렸습니다.");
+        }
     }
 }

@@ -64,9 +64,10 @@ public class ScheduleController {
     // 일정 삭제 컨트롤러
     @DeleteMapping("/api/schedules/{scheduleId}")
     public ResponseEntity<Void> deleteSchedule(
-            @PathVariable Long scheduleId
+            @PathVariable Long scheduleId,
+            @RequestParam String password
     ) {
-        scheduleService.deleteSchedule(scheduleId);
+        scheduleService.deleteSchedule(scheduleId, password);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
