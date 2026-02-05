@@ -49,8 +49,9 @@ public class ScheduleService {
     public List<GetScheduleResponse> getAllSchedules(String name) {
         List<GetScheduleResponse> dtos = new ArrayList<>();
 
-        if (name == null) {
-            List<Schedule> schedules = scheduleRepository.findAllByOrderByModifiedAtDesc();
+        List<Schedule> schedules;
+        if (name == null || name.isEmpty()) {
+            schedules = scheduleRepository.findAllByOrderByModifiedAtDesc();
 
             // 전체 조회
             for (Schedule schedule : schedules) {
@@ -64,9 +65,8 @@ public class ScheduleService {
                 );
                 dtos.add(dto);
             }
-            return dtos;
         } else {
-            List<Schedule> schedules = scheduleRepository.findByNameOrderByModifiedAtDesc(name);
+            schedules = scheduleRepository.findByNameOrderByModifiedAtDesc(name);
             // name 기준 조회
             for (Schedule schedule : schedules) {
 
@@ -79,10 +79,9 @@ public class ScheduleService {
                         schedule.getModifiedAt()
                 );
                 dtos.add(dtoName);
-
             }
-            return dtos;
         }
+        return dtos;
     }
 
     // 일정 단건 조회(id, GET)
