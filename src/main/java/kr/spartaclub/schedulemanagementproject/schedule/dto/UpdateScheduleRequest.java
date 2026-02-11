@@ -14,6 +14,4 @@ import lombok.Getter;
 public class UpdateScheduleRequest {
 
     private String title;
-    private String name;
-    private String password;
 }

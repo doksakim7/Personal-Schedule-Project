@@ -1,7 +1,6 @@
 package kr.spartaclub.schedulemanagementproject.schedule.controller;
 
 
-import kr.spartaclub.schedulemanagementproject.dto.*;
 import kr.spartaclub.schedulemanagementproject.schedule.dto.*;
 import kr.spartaclub.schedulemanagementproject.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -65,10 +64,9 @@ public class ScheduleController {
     // 일정 삭제 컨트롤러
     @DeleteMapping("/schedules/{scheduleId}")
     public ResponseEntity<Void> deleteSchedule(
-            @PathVariable Long scheduleId,
-            @RequestParam String password
+            @PathVariable Long scheduleId
     ) {
-        scheduleService.deleteSchedule(scheduleId, password);
+        scheduleService.deleteSchedule(scheduleId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

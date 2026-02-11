@@ -81,8 +81,8 @@ public class ScheduleService {
 
     // 일정 단건 조회(id, GET)
     @Transactional(readOnly = true)
-    public GetScheduleResponse getOneSchedule(Long id) {
-        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+    public GetScheduleResponse getOneSchedule(Long scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
         return new GetScheduleResponse(
@@ -96,22 +96,14 @@ public class ScheduleService {
 
     // 일정 수정(PATCH)
     @Transactional
-    public UpdateScheduleResponse updateSchedule(Long id, UpdateScheduleRequest request) {
-        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+    public UpdateScheduleResponse updateSchedule(Long scheduleId, UpdateScheduleRequest request) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
 
-//        // 비밀번호 검증
-//        if (schedule.getPassword().equals(request.getPassword())) {
-//            schedule.update(
-//                    request.getTitle(),
-//                    request.getName()
-//            );
-//        } else {
-//            throw new IllegalStateException("비밀번호가 틀렸습니다.");
-//        }
-
-        schedule.update(request.getTitle());
+        schedule.update(
+                request.getTitle()
+        );
 
         return new UpdateScheduleResponse(
                 schedule.getScheduleId(),
@@ -124,16 +116,11 @@ public class ScheduleService {
 
     // 일정 삭제(DELETE)
     @Transactional
-    public void deleteSchedule(Long id, String password) {
-        boolean existence = scheduleRepository.existsById(id);
+    public void deleteSchedule(Long scheduleId) {
+        boolean existence = scheduleRepository.existsById(scheduleId);
         if (!existence) {
             throw new IllegalStateException("존재하지 않는 일정입니다");
         }
-//        if(password.equals(scheduleRepository.getReferenceById(id).getPassword())) {
-//            scheduleRepository.deleteById(id);
-//        } else {
-//            throw new IllegalStateException("비밀번호가 틀렸습니다.");
-//        }
-        scheduleRepository.deleteById(id);
+        scheduleRepository.deleteById(scheduleId);
     }
 }

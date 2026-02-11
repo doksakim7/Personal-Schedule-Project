@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 @Getter
 public class CreateScheduleResponse {
 
-    private final Long id;
+    private final Long scheduleId;
     private final String title;
     private final String content;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public CreateScheduleResponse(Long id, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
-        this.id = id;
+    public CreateScheduleResponse(Long scheduleId, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+        this.scheduleId = scheduleId;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
