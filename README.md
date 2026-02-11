@@ -213,4 +213,7 @@ JPA를 활용한 데이터 영속화와 createdAt/modifiedAt 자동 관리를 �
 
 # ERD
 
-<img width="354" height="187" alt="스크린샷 2026-02-04 오후 3 08 39" src="https://github.com/user-attachments/assets/37574a6b-2174-437b-980d-b7698e31e55a" />
+<img width="399" height="370" alt="일정관리앱 숙련 스프링 ERD" src="https://github.com/user-attachments/assets/46f21868-c8a3-4aae-8bde-93a79f4ee208" />
+
+- User(1) : Schedule(N) 관계
+- Schedule.userId는 User.userId를 참조하는 FK
