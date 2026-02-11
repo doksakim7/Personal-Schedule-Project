@@ -1,4 +1,4 @@
-package kr.spartaclub.schedulemanagementproject.dto;
+package kr.spartaclub.schedulemanagementproject.schedule.dto;
 
 
 import jakarta.persistence.Column;

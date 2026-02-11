@@ -1,6 +1,6 @@
-package kr.spartaclub.schedulemanagementproject.repository;
+package kr.spartaclub.schedulemanagementproject.schedule.repository;
 
-import kr.spartaclub.schedulemanagementproject.entity.Schedule;
+import kr.spartaclub.schedulemanagementproject.schedule.entity.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

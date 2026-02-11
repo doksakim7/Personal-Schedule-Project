@@ -1,9 +1,9 @@
-package kr.spartaclub.schedulemanagementproject.service;
+package kr.spartaclub.schedulemanagementproject.schedule.service;
 
 
-import kr.spartaclub.schedulemanagementproject.dto.*;
-import kr.spartaclub.schedulemanagementproject.entity.Schedule;
-import kr.spartaclub.schedulemanagementproject.repository.ScheduleRepository;
+import kr.spartaclub.schedulemanagementproject.schedule.dto.*;
+import kr.spartaclub.schedulemanagementproject.schedule.entity.Schedule;
+import kr.spartaclub.schedulemanagementproject.schedule.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

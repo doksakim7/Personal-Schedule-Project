@@ -1,4 +1,4 @@
-package kr.spartaclub.schedulemanagementproject.entity;
+package kr.spartaclub.schedulemanagementproject.schedule.entity;
 
 
 import jakarta.persistence.*;

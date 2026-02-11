@@ -1,8 +1,9 @@
-package kr.spartaclub.schedulemanagementproject.controller;
+package kr.spartaclub.schedulemanagementproject.schedule.controller;
 
 
 import kr.spartaclub.schedulemanagementproject.dto.*;
-import kr.spartaclub.schedulemanagementproject.service.ScheduleService;
+import kr.spartaclub.schedulemanagementproject.schedule.dto.*;
+import kr.spartaclub.schedulemanagementproject.schedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

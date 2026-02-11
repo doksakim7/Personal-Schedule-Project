@@ -1,4 +1,4 @@
-package kr.spartaclub.schedulemanagementproject.dto;
+package kr.spartaclub.schedulemanagementproject.schedule.dto;
 
 
 import lombok.Getter;
@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
  * Created by IntelliJ IDEA.
  * User: jeongjihun
  * Date: 26. 2. 4.
- * Time: 오후 5:57
+ * Time: 오후 5:29
  **/
 
 @Getter
-public class GetScheduleResponse {
+public class CreateScheduleResponse {
 
     private final Long id;
     private final String title;
@@ -22,8 +22,7 @@ public class GetScheduleResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-
-    public GetScheduleResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CreateScheduleResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
