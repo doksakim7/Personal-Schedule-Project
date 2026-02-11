@@ -1,6 +1,10 @@
 package kr.spartaclub.schedulemanagementproject.user.service;
 
 
+import kr.spartaclub.schedulemanagementproject.user.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 /**
  * Created by IntelliJ IDEA.
  * User: jeongjihun
@@ -8,5 +12,11 @@ package kr.spartaclub.schedulemanagementproject.user.service;
  * Time: 오전 2:43
  **/
 
+@Service
+@RequiredArgsConstructor
 public class UserService {
+
+    private final UserRepository userRepository;
+
+
 }

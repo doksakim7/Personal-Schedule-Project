@@ -26,7 +26,7 @@ public class ScheduleController {
 
 
     // 일정 생성 컨트롤러
-    @PostMapping("/api/schedules")
+    @PostMapping("/schedules")
     public ResponseEntity<CreateScheduleResponse> createSchedule(
             @RequestBody CreateScheduleRequest request
         ) {
@@ -35,7 +35,7 @@ public class ScheduleController {
     }
 
     // 일정 전체 조회 컨트롤러
-    @GetMapping("/api/schedules")
+    @GetMapping("/schedules")
     public ResponseEntity<List<GetScheduleResponse>> getAllSchedules(
             @RequestParam(required = false) String name
     ) {
@@ -44,7 +44,7 @@ public class ScheduleController {
     }
 
     // 일정 단건 조회(id) 컨트롤러
-    @GetMapping("/api/schedules/{scheduleId}")
+    @GetMapping("/schedules/{scheduleId}")
     public ResponseEntity<GetScheduleResponse> getSchedule(
             @PathVariable Long scheduleId
     ) {
@@ -53,7 +53,7 @@ public class ScheduleController {
     }
 
     // 일정 수정 컨트롤러
-    @PatchMapping("/api/schedules/{scheduleId}")
+    @PatchMapping("/schedules/{scheduleId}")
     public ResponseEntity<UpdateScheduleResponse> updateSchedule(
             @PathVariable Long scheduleId,
             @RequestBody UpdateScheduleRequest request
@@ -63,7 +63,7 @@ public class ScheduleController {
     }
 
     // 일정 삭제 컨트롤러
-    @DeleteMapping("/api/schedules/{scheduleId}")
+    @DeleteMapping("/schedules/{scheduleId}")
     public ResponseEntity<Void> deleteSchedule(
             @PathVariable Long scheduleId,
             @RequestParam String password

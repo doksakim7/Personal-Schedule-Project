@@ -29,16 +29,13 @@ public class ScheduleService {
     public CreateScheduleResponse createSchedule(CreateScheduleRequest request) {
         Schedule schedule = new Schedule(
                 request.getTitle(),
-                request.getContent(),
-                request.getName(),
-                request.getPassword()
+                request.getContent()
         );
         Schedule savedSchedule = scheduleRepository.save(schedule);
         return new CreateScheduleResponse(
-                savedSchedule.getId(),
+                savedSchedule.getScheduleId(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
-                savedSchedule.getName(),
                 savedSchedule.getCreatedAt(),
                 savedSchedule.getModifiedAt()
         );
@@ -56,10 +53,9 @@ public class ScheduleService {
             // 전체 조회
             for (Schedule schedule : schedules) {
                 GetScheduleResponse dto = new GetScheduleResponse(
-                        schedule.getId(),
+                        schedule.getScheduleId(),
                         schedule.getTitle(),
                         schedule.getContent(),
-                        schedule.getName(),
                         schedule.getCreatedAt(),
                         schedule.getModifiedAt()
                 );
@@ -71,10 +67,9 @@ public class ScheduleService {
             for (Schedule schedule : schedules) {
 
                 GetScheduleResponse dtoName = new GetScheduleResponse(
-                        schedule.getId(),
+                        schedule.getScheduleId(),
                         schedule.getTitle(),
                         schedule.getContent(),
-                        schedule.getName(),
                         schedule.getCreatedAt(),
                         schedule.getModifiedAt()
                 );
@@ -91,10 +86,9 @@ public class ScheduleService {
                 () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
         return new GetScheduleResponse(
-                schedule.getId(),
+                schedule.getScheduleId(),
                 schedule.getTitle(),
                 schedule.getContent(),
-                schedule.getName(),
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
@@ -107,20 +101,22 @@ public class ScheduleService {
                 () -> new IllegalStateException("존재하지 않는 일정입니다.")
         );
 
-        // 비밀번호 검증
-        if (schedule.getPassword().equals(request.getPassword())) {
-            schedule.update(
-                    request.getTitle(),
-                    request.getName()
-            );
-        } else {
-            throw new IllegalStateException("비밀번호가 틀렸습니다.");
-        }
+//        // 비밀번호 검증
+//        if (schedule.getPassword().equals(request.getPassword())) {
+//            schedule.update(
+//                    request.getTitle(),
+//                    request.getName()
+//            );
+//        } else {
+//            throw new IllegalStateException("비밀번호가 틀렸습니다.");
+//        }
+
+        schedule.update(request.getTitle());
+
         return new UpdateScheduleResponse(
-                schedule.getId(),
+                schedule.getScheduleId(),
                 schedule.getTitle(),
                 schedule.getContent(),
-                schedule.getName(),
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
@@ -133,10 +129,11 @@ public class ScheduleService {
         if (!existence) {
             throw new IllegalStateException("존재하지 않는 일정입니다");
         }
-        if(password.equals(scheduleRepository.getReferenceById(id).getPassword())) {
-            scheduleRepository.deleteById(id);
-        } else {
-            throw new IllegalStateException("비밀번호가 틀렸습니다.");
-        }
+//        if(password.equals(scheduleRepository.getReferenceById(id).getPassword())) {
+//            scheduleRepository.deleteById(id);
+//        } else {
+//            throw new IllegalStateException("비밀번호가 틀렸습니다.");
+//        }
+        scheduleRepository.deleteById(id);
     }
 }
