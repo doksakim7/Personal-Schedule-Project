@@ -1,3 +1,39 @@
+# 프로젝트 소개
+이 프로젝트는 내일배움캠프에서 진행한 일정관리 REST API 과제입니다.  
+Spring Boot 기반의 3-Layer Architecture(Controller–Service–Repository)를 적용하여  
+일정의 생성·조회·수정·삭제(CRUD) 기능을 제공하는 RESTful API를 구현했습니다.  
+JPA를 활용한 데이터 영속화와 createdAt/modifiedAt 자동 관리를 적용했습니다.
+
+
+## 현재 구현 기능
+- 일정 생성 (POST /api/schedules)
+- 일정 전체 조회 및 작성자 필터링 (GET /api/schedules?name={name})
+- 일정 단건 조회 (GET /api/schedules/{scheduleId})
+- 일정 수정 (PATCH /api/schedules/{scheduleId}) — title, name만 수정 가능
+- 일정 삭제 (DELETE /api/schedules/{scheduleId}?password=)
+
+
+## 기술 스택
+- Language: Java 17  
+- Framework: Spring Boot  
+- Persistence: Spring Data JPA + MySQL  
+- Build Tool: Gradle  
+- Environment: Web Application (REST API)
+
+
+## 프로젝트 구조
+<img width="409" height="574" alt="스크린샷 2026-02-11 오후 8 41 02" src="https://github.com/user-attachments/assets/a9091980-e12a-463d-b3ec-2df78f50ba6c" />
+  
+- Spring Boot 기반 3-Layer 구조(Controller–Service–Repository)를 적용했습니다.  
+- 엔티티(Entity)와 DTO를 분리하여 관심사를 명확히 구분했습니다.  
+- BaseEntity를 활용하여 createdAt, modifiedAt를 공통 관리했습니다.
+
+
+## 라이선스
+- This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+
 # API 명세서
 
 ## 공통
