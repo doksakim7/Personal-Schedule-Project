@@ -1,4 +1,4 @@
-f# API 명세서
+# API 명세서
 
 - 공통
 Base URL: /api
