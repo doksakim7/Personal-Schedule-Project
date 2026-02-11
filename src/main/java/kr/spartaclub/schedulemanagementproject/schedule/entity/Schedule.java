@@ -2,6 +2,7 @@ package kr.spartaclub.schedulemanagementproject.schedule.entity;
 
 
 import jakarta.persistence.*;
+import kr.spartaclub.schedulemanagementproject.user.entity.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,10 @@ public class Schedule extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long scheduleId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(length = 30, nullable = false)
     private String title;
