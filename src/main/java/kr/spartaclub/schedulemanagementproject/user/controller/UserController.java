@@ -1,9 +1,14 @@
 package kr.spartaclub.schedulemanagementproject.user.controller;
 
 
+import kr.spartaclub.schedulemanagementproject.user.dto.*;
 import kr.spartaclub.schedulemanagementproject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,4 +22,45 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+
+    // 유저 생성 컨트롤러
+    @PostMapping("/users")
+    public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest request) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(request));
+    }
+
+    // 유저 전체 조회 컨트롤러
+    @GetMapping("/users")
+    public ResponseEntity<List<GetUserResponse>> getAllUsers() {
+
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
+    }
+
+    // 유저 단건 조회(id) 컨트롤러
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<GetUserResponse> getOneUser(
+            @PathVariable Long userId
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getOneUser(userId));
+    }
+
+    // 유저 수정 컨트롤러
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<UpdateUserResponse> updateUser(
+            @PathVariable Long userId,
+            @RequestBody UpdateUserRequest request
+            ) {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(userId, request));
+    }
+
+    // 유저 삭제 컨트롤러
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<Void> deleteUser(
+            @PathVariable Long userId
+    ) {
+        userService.deleteUser(userId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }
