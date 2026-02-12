@@ -39,7 +39,6 @@ public class User extends BaseEntity {
 
     public void update(String email) {
         this.email = email;
-        this.password = password;
     }
 
 }
