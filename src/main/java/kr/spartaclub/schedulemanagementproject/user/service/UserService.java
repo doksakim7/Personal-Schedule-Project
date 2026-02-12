@@ -66,7 +66,6 @@ public class UserService {
                     user.getUserId(),
                     user.getUserName(),
                     user.getEmail(),
-                    user.getPassword(),
                     user.getCreatedAt(),
                     user.getModifiedAt()
             );
@@ -85,7 +84,6 @@ public class UserService {
                 user.getUserId(),
                 user.getUserName(),
                 user.getEmail(),
-                user.getPassword(),
                 user.getCreatedAt(),
                 user.getModifiedAt()
         );
