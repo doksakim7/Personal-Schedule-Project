@@ -64,7 +64,7 @@ public class ScheduleService {
                 dtos.add(dto);
             }
         } else {
-            schedules = scheduleRepository.findByNameOrderByModifiedAtDesc(name);
+            schedules = scheduleRepository.findByUser_UserNameOrderByModifiedAtDesc(name);
             // name 기준 조회
             for (Schedule schedule : schedules) {
 
