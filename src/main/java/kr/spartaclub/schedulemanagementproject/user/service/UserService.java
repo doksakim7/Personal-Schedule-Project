@@ -92,19 +92,28 @@ public class UserService {
     // 유저 수정(PUT)
     @Transactional
     public UpdateUserResponse updateUser(Long userId, UpdateUserRequest request) {
-        User user = userRepository.findById(userId).orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 유저입니다.")
-        );
-        user.update(
-                request.getEmail(),
-                request.getPassword()
-        );
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 유저입니다."));
+
+        // 비밀번호 검증 (본인 확인)
+        if (!user.getPassword().equals(request.getPassword())) {
+            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 이메일 변경 시 중복 체크
+        if (!user.getEmail().equals(request.getEmail())
+                && userRepository.existsByEmail(request.getEmail())) {
+            throw new IllegalStateException("이미 존재하는 이메일입니다.");
+        }
+
+        // 이메일만 수정
+        user.update(request.getEmail());
 
         return new UpdateUserResponse(
                 user.getUserId(),
                 user.getEmail(),
                 user.getUserName(),
-                user.getPassword(),
                 user.getCreatedAt(),
                 user.getModifiedAt()
         );
