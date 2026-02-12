@@ -2,6 +2,7 @@ package kr.spartaclub.schedulemanagementproject.user.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,8 @@ public class User extends BaseEntity {
     private String userName;
     @Column(length = 30, nullable = false)
     private String email;
+
+    @Size(min = 8, message = "비밀번호는 8자 이상이어야 합니다.")
     @Column(length = 20, nullable = false)
     private String password;
 

@@ -2,6 +2,7 @@ package kr.spartaclub.schedulemanagementproject.schedule.dto;
 
 
 import jakarta.persistence.Column;
+import kr.spartaclub.schedulemanagementproject.user.entity.User;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 public class CreateScheduleRequest {
 
+    private User user;
     private String title;
     private String content;
 

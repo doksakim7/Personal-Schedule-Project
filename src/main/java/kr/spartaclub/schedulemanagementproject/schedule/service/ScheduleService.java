@@ -4,6 +4,7 @@ package kr.spartaclub.schedulemanagementproject.schedule.service;
 import kr.spartaclub.schedulemanagementproject.schedule.dto.*;
 import kr.spartaclub.schedulemanagementproject.schedule.entity.Schedule;
 import kr.spartaclub.schedulemanagementproject.schedule.repository.ScheduleRepository;
+import kr.spartaclub.schedulemanagementproject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ public class ScheduleService {
     @Transactional
     public CreateScheduleResponse createSchedule(CreateScheduleRequest request) {
         Schedule schedule = new Schedule(
+                request.getUser(),
                 request.getTitle(),
                 request.getContent()
         );
