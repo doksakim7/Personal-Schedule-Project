@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -30,17 +30,17 @@ public class AuthController {
 
 
     // 회원가입(유저 생성) 컨트롤러
-    @PostMapping("/auth/register")
-    public ResponseEntity<CreateUserResponse> register(
-            @Valid @RequestBody CreateUserRequest request
+    @PostMapping("/register")
+    public ResponseEntity<RegisterResponse> register(
+            @Valid @RequestBody RegisterRequest request
     ) {
         Long userId = userService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new CreateUserResponse(userId));
+                .body(new RegisterResponse(userId));
     }
 
     // 세션 로그인 컨트롤러
-    @PostMapping("/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(
             @Valid @RequestBody LoginRequest request,
             HttpSession session
@@ -54,7 +54,7 @@ public class AuthController {
     }
 
     // 세션 로그아웃 컨트롤러
-    @PostMapping("/auth/logout")
+    @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session) {
         session.invalidate();
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

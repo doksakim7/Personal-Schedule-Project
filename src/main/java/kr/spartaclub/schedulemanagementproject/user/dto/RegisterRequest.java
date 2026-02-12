@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class CreateUserRequest {
+public class RegisterRequest {
 
     @NotBlank(message = "userName은 필수입니다.")
     @Size(max = 20, message = "userName은 20자 이하여야 합니다.")

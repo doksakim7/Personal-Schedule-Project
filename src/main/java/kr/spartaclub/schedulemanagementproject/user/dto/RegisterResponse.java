@@ -13,7 +13,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CreateUserResponse {
+public class RegisterResponse {
 
     private Long userId;
 }

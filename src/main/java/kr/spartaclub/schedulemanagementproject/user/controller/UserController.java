@@ -19,7 +19,7 @@ import java.util.List;
  **/
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -27,14 +27,14 @@ public class UserController {
 
 
     // 유저 전체 조회 컨트롤러
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<List<GetUserResponse>> getAllUsers() {
 
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUser());
     }
 
     // 유저 단건 조회(id) 컨트롤러
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<GetUserResponse> getOneUser(
             @PathVariable Long userId
     ) {
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     // 유저 수정 컨트롤러
-    @PutMapping("/users/{userId}")
+    @PutMapping("/{userId}")
     public ResponseEntity<UpdateUserResponse> updateUser(
             @PathVariable Long userId,
             @Valid @RequestBody UpdateUserRequest request
@@ -51,7 +51,7 @@ public class UserController {
     }
 
     // 유저 삭제 컨트롤러
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(
             @PathVariable Long userId
     ) {

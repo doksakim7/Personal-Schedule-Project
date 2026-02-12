@@ -26,7 +26,7 @@ public class UserService {
 
     // 회원가입 기능(POST)
     @Transactional
-    public Long register(CreateUserRequest request) {
+    public Long register(RegisterRequest request) {
 
         // 이메일 중복 체크
         if (userRepository.existsByEmail(request.getEmail())) {
