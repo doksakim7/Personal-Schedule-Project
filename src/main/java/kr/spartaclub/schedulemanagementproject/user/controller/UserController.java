@@ -1,6 +1,7 @@
 package kr.spartaclub.schedulemanagementproject.user.controller;
 
 
+import jakarta.validation.Valid;
 import kr.spartaclub.schedulemanagementproject.user.dto.*;
 import kr.spartaclub.schedulemanagementproject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +19,30 @@ import java.util.List;
  **/
 
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    // 유저 생성 컨트롤러
-    @PostMapping("/users")
-    public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest request) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(request));
+    // 회원가입(유저 생성) 컨트롤러
+    @PostMapping("/auth/register")
+    public ResponseEntity<CreateUserResponse> register(
+            @Valid @RequestBody CreateUserRequest request
+    ) {
+        Long userId = userService.register(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new CreateUserResponse(userId));
     }
+
+
+//    // 유저 생성 컨트롤러
+//    @PostMapping("/users")
+//    public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest request) {
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(request));
+//    }
 
     // 유저 전체 조회 컨트롤러
     @GetMapping("/users")

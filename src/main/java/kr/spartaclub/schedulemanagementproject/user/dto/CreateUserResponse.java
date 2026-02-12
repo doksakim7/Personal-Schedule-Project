@@ -14,14 +14,8 @@ import lombok.Getter;
 public class CreateUserResponse {
 
     private final Long userId;
-    private final String userName;
-    private final String email;
-    private final String password;
 
-    public CreateUserResponse(Long userId, String userName, String email, String password) {
+    public CreateUserResponse(Long userId) {
         this.userId = userId;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
     }
 }

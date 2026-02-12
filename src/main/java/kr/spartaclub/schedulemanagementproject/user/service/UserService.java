@@ -24,23 +24,23 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    // 유저 생성 기능(POST)
+    // 회원가입(유저 생성 기능(POST))
     @Transactional
-    public CreateUserResponse saveUser(CreateUserRequest request) {
+    public Long register(CreateUserRequest request) {
+
+        // 이메일 중복 체크
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new IllegalStateException("이미 존재하는 이메일입니다.");
+        }
+
         User user = new User(
                 request.getUserName(),
                 request.getEmail(),
                 request.getPassword()
         );
 
-        User savedUser = userRepository.save(user);
-
-        return new CreateUserResponse(
-                savedUser.getUserId(),
-                savedUser.getUserName(),
-                savedUser.getEmail(),
-                savedUser.getPassword()
-        );
+        User saved = userRepository.save(user);
+        return saved.getUserId();
     }
 
     // 유저 전체 조회(GET)
