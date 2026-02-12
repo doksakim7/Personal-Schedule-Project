@@ -80,7 +80,7 @@ public class UserController {
     @PutMapping("/users/{userId}")
     public ResponseEntity<UpdateUserResponse> updateUser(
             @PathVariable Long userId,
-            @RequestBody UpdateUserRequest request
+            @Valid @RequestBody UpdateUserRequest request
             ) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(userId, request));
     }

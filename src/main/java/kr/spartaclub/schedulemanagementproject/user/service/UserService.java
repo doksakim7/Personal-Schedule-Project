@@ -122,10 +122,10 @@ public class UserService {
     // 유저 삭제(DELETE)
     @Transactional
     public void deleteUser(Long userId) {
-        boolean existence = userRepository.existsById(userId);
-        if (!existence) {
-            throw new IllegalStateException("존재하지 않는 유저입니다");
-        }
-        userRepository.deleteById(userId);
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 유저입니다."));
+
+        userRepository.delete(user);
     }
 }
