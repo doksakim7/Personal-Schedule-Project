@@ -24,7 +24,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    // 회원가입(유저 생성 기능(POST))
+    // 회원가입 기능(POST)
     @Transactional
     public Long register(CreateUserRequest request) {
 
@@ -41,6 +41,19 @@ public class UserService {
 
         User saved = userRepository.save(user);
         return saved.getUserId();
+    }
+
+    // 세션 로그인/로그아웃 기능(POST)
+    @Transactional(readOnly = true)
+    public User login(LoginRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new IllegalStateException("이메일 또는 비밀번호가 올바르지 않습니다."));
+
+        if (!user.getPassword().equals(request.getPassword())) {
+            throw new IllegalStateException("이메일 또는 비밀번호가 올바르지 않습니다.");
+        }
+
+        return user;
     }
 
     // 유저 전체 조회(GET)
