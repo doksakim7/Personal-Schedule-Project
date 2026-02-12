@@ -37,12 +37,9 @@ public class UserController {
     }
 
 
-//    // 유저 생성 컨트롤러
-//    @PostMapping("/users")
-//    public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest request) {
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(request));
-//    }
+
+
+
 
     // 유저 전체 조회 컨트롤러
     @GetMapping("/users")

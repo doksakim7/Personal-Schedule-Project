@@ -1,6 +1,7 @@
 package kr.spartaclub.schedulemanagementproject.user.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -11,11 +12,8 @@ import lombok.Getter;
  **/
 
 @Getter
+@AllArgsConstructor
 public class CreateUserResponse {
 
-    private final Long userId;
-
-    public CreateUserResponse(Long userId) {
-        this.userId = userId;
-    }
+    private Long userId;
 }
